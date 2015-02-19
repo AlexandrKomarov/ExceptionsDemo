@@ -31,7 +31,7 @@ public class DemoList <T> {
 
     public void delete()throws RuntimeException{
         if (first == null){
-            throw new  RuntimeException("Список пуст");
+            throw new RuntimeException("Список пуст");
         }
         first = first.getNext();
         size--;

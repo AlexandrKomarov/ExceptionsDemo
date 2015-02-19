@@ -31,7 +31,7 @@ public class DemoList <T> {
 
     public void delete()throws RuntimeException{
         if (first == null){
-            throw new RuntimeException("Список пуст");
+            throw new  RuntimeException("Список пуст");
         }
         first = first.getNext();
         size--;
@@ -39,23 +39,26 @@ public class DemoList <T> {
 
     public int size(){
         return size;
+
     }
 
-    public void getDataAt(int pos)throws RuntimeException{
+    public T getDataAt(int pos)throws RuntimeException{
         Item currentItem = first;
-        for (int i = 0; (currentItem == null)&&(i == pos); i++){
+        for (int i = 0; ((currentItem != null)&&(i != pos)); i++){
             currentItem = currentItem.getNext();
         }
         if (currentItem == null){
             throw new RuntimeException("Элемента с позицией " + pos + " не существует");
         }
+        return currentItem.getData();
     }
 
     public int indexOf(T data)throws Exception{
         Item currentItem = first;
         int pos = 0;
         while ((currentItem != null) && (currentItem.getData() != data)) {
-             pos++;
+            currentItem = currentItem.getNext();
+            pos++;
         }
         if (currentItem == null) {
              throw new Exception("Элемент в списка не найден");

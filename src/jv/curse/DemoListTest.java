@@ -16,19 +16,19 @@ public class DemoListTest {
     DemoList<Integer> list = new DemoList<Integer>();
 
     @Test
-    public void testAdd()  {
+    public void testAdd() throws MyExsception {
         list.add(1);
         assertThat(1, is(list.getDataAt(0)));
     }
 
-    @Test(expected = RuntimeException.class)
-    public void testDelete()  {
+    @Test(expected = MyExsception.class)
+    public void testDelete() throws MyExsception {
         list.delete();
         fail();
     }
 
     @Test
-    public void testSize()  {
+    public void testSize() throws MyExsception {
         list.add(2);
         list.add(4);
         list.add(5);
@@ -36,18 +36,55 @@ public class DemoListTest {
         assertEquals(list.size(), 2);
     }
 
-    @Test(expected = RuntimeException.class)
-    public void testGetDataAt()  {
+    @Test(expected = MyExsception.class)
+    public void testGetDataAt() throws MyExsception {
         list.add(1);
         list.add(2);
         list.getDataAt(3);
     }
 
     @Test
-    public void testIndexOf() throws Exception {
+    public void testIndexOf() throws MyExsception {
         list.add(1);
         list.add(2);
         list.add(3);
         assertThat(2,is(list.indexOf(1)));
+    }
+
+    @Test
+    public void test1() throws MyExsception{
+        list.add(5);
+        list.add(4);
+        list.add(3);
+        list.add(5);
+        list.add(1);
+        list.add(2);
+        list.add(5);
+        list.delete();
+        assertThat(2,is(list.indexOf(5)));
+    }
+
+    public void test2() throws MyExsception{
+        list.add(5);
+        list.add(4);
+        list.add(3);
+        list.add(5);
+        list.add(1);
+        list.add(2);
+        list.add(5);
+        list.delete();
+        assertThat(3,is(list.getDataAt(3)));
+    }
+
+    public void test3() throws MyExsception{
+        list.add(5);
+        list.add(4);
+        list.add(3);
+        list.add(5);
+        list.add(1);
+        list.add(2);
+        list.add(5);
+        list.delete();
+        assertThat(6,is(list.size()));
     }
 }

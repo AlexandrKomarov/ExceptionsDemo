@@ -4,13 +4,13 @@ package jv.curse;
  * Created with IntelliJ IDEA.
  * User: komarov.as
  * Date: 26.02.15
- * Time: 15:38
+ * Time: 15:57
  * To change this template use File | Settings | File Templates.
  */
-public class MyExsception extends Exception {
+public class ElementNotFound extends Exception {
     private String messege;
 
-    public MyExsception(String s) {
+    public ElementNotFound(String s) {
         messege = s;
     }
 

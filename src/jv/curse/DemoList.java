@@ -8,9 +8,6 @@ public class DemoList<T> {
     private Item first;
     private int size;
 
-
-
-
     private class Item {
         private Item next;
         private T data;
@@ -35,9 +32,9 @@ public class DemoList<T> {
         size++;
     }
 
-    public void delete() throws MyExsception {
+    public void delete() {
         if (first == null) {
-            throw new MyExsception("Список пуст");
+            throw new IllegalStateException("Список пуст");
         }
         first = first.getNext();
         size--;
@@ -48,18 +45,20 @@ public class DemoList<T> {
 
     }
 
-    public T getDataAt(int pos) throws MyExsception {
+    public T getDataAt(int pos) {
         Item currentItem = first;
         for (int i = 0; ((currentItem != null) && (i != pos)); i++) {
             currentItem = currentItem.getNext();
         }
         if (currentItem == null) {
-            throw new MyExsception("Элемента с позицией " + pos + " не существует");
+            throw new IllegalArgumentException("Элемента на позиции " + pos + " не существует");
         }
         return currentItem.getData();
     }
 
-    public int indexOf(T data) throws MyExsception {
+
+
+    public int indexOf(T data) throws ElementNotFound {
         Item currentItem = first;
         int pos = 0;
         while ((currentItem != null) && (currentItem.getData() != data)) {
@@ -67,7 +66,7 @@ public class DemoList<T> {
             pos++;
         }
         if (currentItem == null) {
-            throw new MyExsception("Элемент в списка не найден");
+            throw new ElementNotFound("Элемент " + data + "  в списке не найден");
         }
         return pos;
     }
